@@ -30,7 +30,7 @@ def predict():
         
         df_encoded = df_encoded[feature_columns]
 
-        # Faz a previsão
+      
         prediction = model.predict(df_encoded)[0]
         proba = model.predict_proba(df_encoded)[0][1]
 
