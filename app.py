@@ -8,6 +8,10 @@ app = Flask(__name__)
 model = joblib.load("modelo_svm.pkl")
 feature_columns = joblib.load("colunas.pkl")
 
+@app.route("/", methods=["GET"])
+def home():
+    return render_template("index.html")
+
 @app.route("/predict", methods=["POST"])
 def predict():
     try:

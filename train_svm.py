@@ -7,7 +7,7 @@ import joblib
 df = pd.read_csv("heart.csv")
 
 
-df_encoded = pd.get_dummies(df, drop_first=True)
+df_encoded = pd.get_dummies(df)
 
 
 X = df_encoded.drop("HeartDisease", axis=1)
