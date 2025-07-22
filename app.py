@@ -10,7 +10,7 @@ feature_columns = joblib.load("colunas.pkl")
 
 @app.route("/", methods=["GET"])
 def home():
-    return render_template("index.html")
+    return render_template("formulario.html")
 
 @app.route("/predict", methods=["POST"])
 def predict():
