@@ -12,6 +12,10 @@ ecg_map = {"Normal": 0, "ST": 1, "LVH": 2}
 angina_map = {"N": 0, "Y": 1}
 slope_map = {"Up": 0, "Flat": 1, "Down": 2}
 
+@app.route("/")
+def home():
+    return "API online e funcionando"
+
 @app.route("/predict", methods=["POST"])
 def predict():
     try:
@@ -41,3 +45,7 @@ def predict():
 
     except Exception as e:
         return f"Erro na previsão: {e}"
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
