@@ -1,11 +1,15 @@
-import pandas as pd 
+import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
-import joblib 
+import joblib
 
-from sklearn.datasets import load_heart_disease
-data = load_heart_disease()
-X, y = data.data, data.target 
+
+df = pd.read_csv("heart.csv")
+
+df_encoded = pd.get_dummies(df, drop_first=True)
+
+X = df_encoded.drop("HeartDisease", axis=1)
+y = df_encoded["HeartDisease"]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 model = SVC(probability=True)
