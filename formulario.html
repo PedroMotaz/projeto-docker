@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Previsão de Doença Cardíaca</title>
+</head>
+<body>
+  <h2>Verifique seu risco de doença cardíaca</h2>
+ <form action="https://projeto-docker-bq5w.onrender.com/predict" method="post">
+    <label>Idade:</label>
+    <input type="number" name="Age" min="1" max="120" required><br>
+
+    <label>Sexo:</label>
+    <select name="Sex" required>
+      <option value="M">Masculino</option>
+      <option value="F">Feminino</option>
+    </select><br>
+
+    <label>Tipo de Dor no Peito:</label>
+    <select name="ChestPainType" required>
+      <option value="ATA">Angina típica</option>
+      <option value="NAP">Angina atípica</option>
+      <option value="ASY">Assintomático</option>
+      <option value="TA">Dor não anginosa</option>
+    </select><br>
+
+    <label>Pressão arterial de repouso:</label>
+    <input type="number" name="RestingBP" min="50" max="250" required><br>
+
+    <label>Colesterol:</label>
+    <input type="number" name="Cholesterol" min="100" max="600" required><br>
+
+    <label>Glicemia em jejum > 120 mg/dl (0 = Não, 1 = Sim):</label>
+    <input type="number" name="FastingBS" min="0" max="1" required><br>
+
+    <label>ECG de repouso:</label>
+    <select name="RestingECG" required>
+      <option value="Normal">Normal</option>
+      <option value="ST">Anormalidade ST</option>
+      <option value="LVH">Hipertrofia ventricular</option>
+    </select><br>
+
+    <label>Frequência cardíaca máxima:</label>
+    <input type="number" name="MaxHR" min="60" max="250" required><br>
+
+    <label>Angina induzida por exercício (S/N):</label>
+    <select name="ExerciseAngina" required>
+      <option value="Y">Sim</option>
+      <option value="N">Não</option>
+    </select><br>
+
+    <label>Oldpeak (depressão do ST):</label>
+    <input type="number" step="0.1" name="Oldpeak" min="0" max="10" required><br>
+
+    <label>Inclinação do ST:</label>
+    <select name="ST_Slope" required>
+      <option value="Up">Subida</option>
+      <option value="Flat">Plano</option>
+      <option value="Down">Descida</option>
+    </select><br>
+
+    <button type="submit">Enviar</button>
+  </form>
+</body>
+</html>
