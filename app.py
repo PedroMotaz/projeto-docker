@@ -6,37 +6,27 @@ app = Flask(__name__)
 
 
 model = joblib.load("modelo_svm.pkl")
-
-
-feature_columns = [
-    'Age', 'RestingBP', 'Cholesterol', 'FastingBS', 'MaxHR', 'Oldpeak',
-    'Sex_M', 'Sex_F',
-    'ChestPainType_ASY', 'ChestPainType_ATA', 'ChestPainType_NAP', 'ChestPainType_TA',
-    'RestingECG_LVH', 'RestingECG_Normal', 'RestingECG_ST',
-    'ExerciseAngina_N', 'ExerciseAngina_Y',
-    'ST_Slope_Down', 'ST_Slope_Flat', 'ST_Slope_Up'
-]
+feature_columns = joblib.load("colunas.pkl")
 
 @app.route("/predict", methods=["POST"])
 def predict():
     try:
+        
         data = request.form.to_dict()
-
-      
         df = pd.DataFrame([data])
 
        
-        df_encoded = pd.get_dummies(df)
+        df_encoded = pd.get_dummies(df, drop_first=True)
 
         
         for col in feature_columns:
             if col not in df_encoded.columns:
                 df_encoded[col] = 0
 
-      
+        
         df_encoded = df_encoded[feature_columns]
 
-      
+        # Faz a previsão
         prediction = model.predict(df_encoded)[0]
         proba = model.predict_proba(df_encoded)[0][1]
 
@@ -46,3 +36,4 @@ def predict():
         })
     except Exception as e:
         return jsonify({"erro": f"Erro na previsão: {str(e)}"})
+
